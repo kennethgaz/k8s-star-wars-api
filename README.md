@@ -2,6 +2,7 @@
 
 Gerar imagem da API (precisa do Dockerfile e de uma conta no Docker Hub):
 ```sh
+docker login
 docker build -t kennethgaz/star-wars-api:1.0.1 .
 docker push kennethgaz/star-wars-api:1.0.1
 ```
