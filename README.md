@@ -6,7 +6,22 @@ docker build -t kennethgaz/star-wars-api:1.0.1 .
 docker push kennethgaz/star-wars-api:1.0.1
 ```
 
-## Versão 1.0.0
+## Configurar API via arquivos .yaml:
+
+```sh
+sudo microk8s kubectl apply -f star-wars-api-deployment.yaml
+sudo microk8s kubectl apply -f star-wars-api-service.yaml
+sudo microk8s kubectl get pods
+sudo microk8s kubectl port-forward star-wars-api-deployment-c854c55b4-6mffn 9000
+
+curl http://localhost:9000/health
+
+{"health":true,"version":"1.0.0"}
+```
+
+## Configurar API via Docker:
+
+### Versão 1.0.0
 
 ```sh
 sudo microk8s kubectl create deployment star-wars-api --image kennethgaz/star-wars-api:1.0.0
@@ -18,7 +33,7 @@ curl http://localhost:9000/health
 {"health":true,"version":"1.0.0"}
 ```
 
-## Versão 1.0.1
+### Versão 1.0.1
 
 ```sh
 sudo microk8s kubectl set image deployment star-wars-api star-wars-api=kennethgaz/star-wars-api:1.0.1
